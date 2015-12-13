@@ -13,6 +13,7 @@
 		FD1D785E1BFBF80500784317 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD1D785C1BFBF80500784317 /* Main.storyboard */; };
 		FD1D78601BFBF80500784317 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD1D785F1BFBF80500784317 /* Assets.xcassets */; };
 		FD1D78691BFC032300784317 /* TVButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D78681BFC032300784317 /* TVButton.m */; };
+		FDECB8321C1DEFD8003D5E95 /* FocusUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = FDECB8311C1DEFD8003D5E95 /* FocusUtilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,8 @@
 		FD1D78611BFBF80500784317 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD1D78671BFC032300784317 /* TVButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVButton.h; sourceTree = "<group>"; };
 		FD1D78681BFC032300784317 /* TVButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVButton.m; sourceTree = "<group>"; };
+		FDECB8301C1DEFD8003D5E95 /* FocusUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocusUtilities.h; sourceTree = "<group>"; };
+		FDECB8311C1DEFD8003D5E95 /* FocusUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocusUtilities.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,8 @@
 				FD1D78531BFBF80500784317 /* Supporting Files */,
 				FD1D78671BFC032300784317 /* TVButton.h */,
 				FD1D78681BFC032300784317 /* TVButton.m */,
+				FDECB8301C1DEFD8003D5E95 /* FocusUtilities.h */,
+				FDECB8311C1DEFD8003D5E95 /* FocusUtilities.m */,
 			);
 			path = FocusTest2;
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 				FD1D78581BFBF80500784317 /* AppDelegate.m in Sources */,
 				FD1D78551BFBF80500784317 /* main.m in Sources */,
 				FD1D78691BFC032300784317 /* TVButton.m in Sources */,
+				FDECB8321C1DEFD8003D5E95 /* FocusUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +300,7 @@
 				FD1D78661BFBF80500784317 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

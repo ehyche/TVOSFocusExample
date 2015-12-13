@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "TVButton.h"
+#import "FocusUtilities.h"
 
 @interface ViewController ()
 
@@ -22,13 +23,35 @@
 @property (weak, nonatomic) IBOutlet TVButton *button7;
 @property (weak, nonatomic) IBOutlet TVButton *button8;
 
+@property(nonatomic, strong) UIFocusGuide *focusGuideLeft;
+@property(nonatomic, strong) UIFocusGuide *focusGuideRight;
+
 @end
 
 @implementation ViewController
 
+#pragma mark - UIViewController methods
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+//    // Create the focus guides and add them to self.view
+//    self.focusGuideLeft = [[UIFocusGuide alloc] init];
+//    self.focusGuideRight = [[UIFocusGuide alloc] init];
+//    [self.view addLayoutGuide:self.focusGuideLeft];
+//    [self.view addLayoutGuide:self.focusGuideRight];
+//
+//    // Set up the left focus guide
+//    [self.focusGuideLeft.leftAnchor constraintEqualToAnchor:self.button0.leftAnchor].active = YES;
+//    [self.focusGuideLeft.topAnchor constraintEqualToAnchor:self.resetButton.topAnchor].active = YES;
+//    [self.focusGuideLeft.bottomAnchor constraintEqualToAnchor:self.resetButton.bottomAnchor].active = YES;
+//    [self.focusGuideLeft.rightAnchor constraintEqualToAnchor:self.button0.rightAnchor].active = YES;
+//
+//    // Set up the right focus guide
+//    [self.focusGuideRight.leftAnchor constraintEqualToAnchor:self.button2.leftAnchor].active = YES;
+//    [self.focusGuideRight.topAnchor constraintEqualToAnchor:self.resetButton.topAnchor].active = YES;
+//    [self.focusGuideRight.bottomAnchor constraintEqualToAnchor:self.resetButton.bottomAnchor].active = YES;
+//    [self.focusGuideRight.rightAnchor constraintEqualToAnchor:self.button2.rightAnchor].active = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,10 +59,38 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UIFocusEnvironment methods
+
+- (UIView *)preferredFocusedView {
+    return self.resetButton;
+}
+
+- (BOOL)shouldUpdateFocusInContext:(UIFocusUpdateContext *)context {
+    NSLog(@"ViewController shouldUpdateFocusInContext:(%@)", [FocusUtilities NSStringFromUIFocusUpdateContext:context]);
+    return YES;
+}
+
 - (void)didUpdateFocusInContext:(UIFocusUpdateContext *)context
        withAnimationCoordinator:(UIFocusAnimationCoordinator *)coordinator {
-    NSLog(@"didUpdateFocusInContext:withAnimationCoordinator");
+    NSLog(@"ViewController didUpdateFocusInContext:%@ withAnimationCoordinator:", [FocusUtilities NSStringFromUIFocusUpdateContext:context]);
+
+    if (context.nextFocusedView == self.resetButton) {
+        // Focus is on the reset button, so we want to tell the focus guides
+        // to send us down to their respective buttons:
+        // Left Focus Guide -> Button0
+        // Right Focus Guide -> Button2
+        self.focusGuideLeft.preferredFocusedView = self.button0;
+        self.focusGuideRight.preferredFocusedView = self.button2;
+    } else {
+        // Focus is down among the numbered buttons Button0...Button8,
+        // so we want to tell the focus guides to send focus up to
+        // the reset button.
+        self.focusGuideLeft.preferredFocusedView = self.resetButton;
+        self.focusGuideRight.preferredFocusedView = self.resetButton;
+    }
 }
+
+#pragma mark - Private methods
 
 - (IBAction)resetAllButtonTapped:(id)sender {
     self.button0.isFocusPossible = YES;
