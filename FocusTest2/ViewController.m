@@ -92,7 +92,10 @@
 - (void)toggleButtonPossibleFocus:(id)sender {
     if ([sender isKindOfClass:[TVButton class]]) {
         TVButton *button = (TVButton *)sender;
+        // Toggle whether or not this button can be focusable
         button.isFocusPossible = !button.isFocusPossible;
+        // Tell the focus engine we need to update focus
+        [super setNeedsFocusUpdate];
     }
 }
 
